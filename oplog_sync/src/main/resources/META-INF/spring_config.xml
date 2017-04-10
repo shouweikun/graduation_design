@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+       default-lazy-init="true">
+    <bean name="queue" class ="java.util.concurrent.ArrayBlockingQueue">
+        <constructor-arg value="${oplog.cache.queue.size}"/>
+    </bean>
+    <bean name="runningFlag" class ="java.util.concurrent.atomic.AtomicBoolean">
+            <constructor-arg value="true"/>
+    </bean>
+    <bean name="transUtils" class="com.puhui.nbsp.cif.TransUtils"/>
+    <bean class="com.puhui.nbsp.cif.CifDataParseFactory">
+        <constructor-arg value="${redis.store}"/>
+        <constructor-arg value="${hbase.tableName}"/>
+        <constructor-arg value="${es.indexName}"/>
+        <constructor-arg value="${es.type}"/>
+        <constructor-arg value="${xml.name}"/>
+        <constructor-arg ref="transUtils"/>
+    </bean>
+    <bean id="clientTrans" class="com.dlut.cs.client.ClientTrans"/>
+    <context:property-placeholder location="app.properties"/>
+    <context:component-scan base-package="com.dlut.cs.*"/>
+</beans>
