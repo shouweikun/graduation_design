@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin
+        channel="channel-oplog"
+        name="oplog trans Plug-in"
+        provider-name="john_Liu">
+
+    <store pk="_id">
+
+        <cf name="basic_info" target="DCCustomerBasicInfo" cifid="applyNo,idCardNum,batchNo,_id,ct,originalApplyNo">
+            <column hbaseCfName="customer_basic" jsonName="DCCustomerBasicInfo" nonesting="true"/>
+        </cf>
+        <cf name="basic_info" target="DCCustomerWorkInfo" cifid="applyNo,idCardNum,batchNo,_id,ct,originalApplyNo">
+            <column hbaseCfName="customer_work" jsonName="DCCustomerWorkInfo" nonesting="true"/>
+        </cf>
+        <cf name="basic_info" target="DCCustomerFamilyInfo" cifid="applyNo,idCardNum,batchNo,_id,ct,originalApplyNo">
+            <column hbaseCfName="customer_family" jsonName="DCCustomerFamilyInfo" nonesting="true"/>
+        </cf>
+        <cf name="basic_info" target="DCCustomerContacts" cifid="applyNo,idCardNum,batchNo,_id,ct,originalApplyNo">
+            <column hbaseCfName="customer_contacts" jsonName="dcCustomerContact"/>
+        </cf>
+        <cf name="basic_info" target="DCAntiFraud" cifid="applyNo,idCardNum,batchNo,_id,ct,originalApplyNo">
+            <column hbaseCfName="customer_anti_frauds" jsonName="DCAntiFraud" nonesting="true"/>
+        </cf>
+        <cf name="basic_info" target="DCCustomerClient" cifid="applyNo,idCardNum,batchNo,_id,ct,originalApplyNo">
+            <column hbaseCfName="customer_client" jsonName="DCCustomerClient" nonesting="true"/>
+        </cf>
+        <cf name="basic_info" target="DCContactsMessages" cifid="applyNo,idCardNum,batchNo,_id,ct,originalApplyNo">
+            <column hbaseCfName="customer_contact_message" jsonName="dCContactsMessages"/>
+        </cf>
+        <cf name="basic_info" target="DCCustomerGpsInfo" cifid="applyNo,idCardNum,batchNo,_id,ct,originalApplyNo">
+            <column hbaseCfName="customer_gps" jsonName="DCCustomerGpsInfo" nonesting="true"/>
+        </cf>
+        <cf name="basic_info" target="DCAppSystemLog" cifid="applyNo,idCardNum,batchNo,_id,ct,originalApplyNo">
+            <column hbaseCfName="customer_ops_system" jsonName="DCAppSystemLog" nonesting="true"/>
+        </cf>
+        <cf name="basic_info" target="DCCustomerSmss" cifid="applyNo,idCardNum,batchNo,_id,ct,originalApplyNo">
+            <column hbaseCfName="customer_sms" jsonName="dCCustomerSMS"/>
+        </cf>
+        <cf name="basic_info" target="DCBankCard" cifid="applyNo,idCardNum,batchNo,_id,ct,originalApplyNo">
+            <column hbaseCfName="customer_bank_card" jsonName="DCBankCard" nonesting="true"/>
+        </cf>
+        <cf name="basic_info" target="DCIdCardBasicInfo" cifid="applyNo,idCardNum,batchNo,_id,ct,originalApplyNo">
+            <column hbaseCfName="idcard_basic" jsonName="DCIdCardBasicInfo" nonesting="true"/>
+        </cf>
+        <cf name="basic_info" target="DCCustomerInstalledList" cifid="applyNo,idCardNum,batchNo,_id,ct,originalApplyNo">
+            <column hbaseCfName="app_list" jsonName="DCCustomerInstalledList" nonesting="true"/>
+        </cf>
+        <cf name="basic_info" target="DCCustomerBindBankMobile" cifid="applyNo,idCardNum,batchNo,_id,ct,originalApplyNo">
+            <column hbaseCfName="band_bankcard_mobile" jsonName="DCCustomerBindBankMobile" nonesting="true"/>
+        </cf>
+        <cf name="basic_info" target="DCCustomerBindBankCardIdNum" cifid="applyNo,idCardNum,batchNo,_id,ct,originalApplyNo">
+            <column hbaseCfName="band_bankcard_idcardnum" jsonName="DCCustomerBindBankCardIdNum" nonesting="true"/>
+        </cf>
+        <cf name="basic_info" target="DCMobileBasicInfo" cifid="applyNo,idCardNum,batchNo,_id,ct,originalApplyNo">
+            <column hbaseCfName="mobile_basic" jsonName="DCMobileBasicInfo" nonesting="true"/>
+        </cf>
+        <cf name="basic_info" target="DCCustomerEmailInfo" cifid="applyNo,idCardNum,batchNo,_id,ct,originalApplyNo">
+            <column hbaseCfName="email_info" jsonName="DCCustomerEmailInfo" nonesting="true"/>
+        </cf>
+        <cf name="basic_info" target="DCCustomerQQInfo" cifid="applyNo,idCardNum,batchNo,_id,ct,originalApplyNo">
+            <column hbaseCfName="qq_info" jsonName="DCCustomerQQInfo" nonesting="true"/>
+        </cf>
+        <cf name="basic_info" target="DCAnnexStatus" cifid="applyNo,idCardNum,batchNo,_id,ct,originalApplyNo">
+            <column hbaseCfName="customer_annex_status" jsonName="DCAnnexStatus" nonesting="true"/>
+        </cf>
+        <cf name="basic_info" target="DCCustomerApplyInfo" cifid="applyNo,idCardNum,batchNo,_id,ct,originalApplyNo">
+            <column hbaseCfName="apply_info" jsonName="DCCustomerApplyInfo" nonesting="true"/>
+        </cf>
+
+
+        <cf name="taobao_info" target="TaobaoStore" cifid="applyNo,idCardNum,batchNo,_id,ct">
+            <column hbaseCfName="taobao_basic" jsonName="taobaoBasicInfo"/>
+            <column hbaseCfName="received_address" jsonName="receivedAddress"/>
+            <column hbaseCfName="detail_trans_basic" jsonName="detailTransBasicInfo"/>
+            <column hbaseCfName="detail_trans_detail" jsonName="detailTransDetailInfo"/>
+            <column hbaseCfName="trans_info" jsonName="taobaoTransInfo"/>
+            <column hbaseCfName="address_mark" jsonName="addressMark"/>
+            <column hbaseCfName="logistics" jsonName="taoBaoLogisticsInfo"/>
+        </cf>
+
+        <cf name="mobile_info" target="MobileStore" cifid="applyNo,idCardNum,batchNo,_id,ct">
+            <column hbaseCfName="basic_info" jsonName="basicInfos" cifid="mobilePhone"/>
+            <column hbaseCfName="addresss" jsonName="addresss"/>
+            <column hbaseCfName="smses" jsonName="smses"/>
+            <column hbaseCfName="voices" jsonName="voices"/>
+            <column hbaseCfName="contacts_intersectphones" jsonName="contactsIntersectPhones"/>
+        </cf>
+
+        <cf name="credit_card_info" target="CreditCardStore" cifid="applyNo,idCardNum,batchNo,_id,ct">
+            <column hbaseCfName="credit_basic" jsonName="creditBasicInfo" cifid="creditCardNumber"/>
+            <column hbaseCfName="trans_info" jsonName="creditTrsnInfo"/>
+        </cf>
+
+        <cf name="alipay_info" target="AlipayStore" cifid="applyNo,idCardNum,batchNo,_id,ct">
+            <column hbaseCfName="alipay_basic" jsonName="alipayBasicInfo" cifid="taobaoAccount"/>
+            <column hbaseCfName="income_expend_detail" jsonName="alipayIncomeExpendDetail"/>
+            <column hbaseCfName="alipay_bank" jsonName="alipayBanklist"/>
+            <column hbaseCfName="contacts" jsonName="alipayContacts"/>
+            <column hbaseCfName="trans_info" jsonName="alipayTransInfoCsv"/>
+            <column hbaseCfName="alipay_transinfo" jsonName="alipayTransInfo"/>
+        </cf>
+
+        <cf name="bank_card_info" target="BankCardStore" cifid="applyNo,idCardNum,batchNo,_id,ct">
+            <column hbaseCfName="bank_card_basic" jsonName="basicInfos" cifid="cardNum"/>
+            <column hbaseCfName="trans" jsonName="transInfos"/>
+        </cf>
+
+
+    </store>
+
+</plugin>
