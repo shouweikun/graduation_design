@@ -61,7 +61,7 @@ public class MongoDbcollection {
             }
 
             datastore = morphia.createDatastore(client, database);
-            logger.info("connect to moongodb[local] success!!!!!!!!");
+            logger.info("connect to moongodb[admin] success!!!!!!!!");
         }
 
         private static MongoClientOptions getConfOptions() {

@@ -55,20 +55,27 @@ public class ZookeeperOffsetHandler implements OffsetHandler{
         public void createZknode(String dataPath,String data,ZkClient zkClient)
         {
             int index = dataPath.indexOf("/",1);
+            int countdown = dataPath.split("/").length;
             while (index >= 1 && index < dataPath.length())
             {
-                if(!zkClient.exists(dataPath.substring(0,index)));
+//                if(countdown <= 3 ){
+                System.out.println(dataPath.substring(0,index)+!zkClient.exists(dataPath.substring(0,index)));
+                if(!zkClient.exists(dataPath.substring(0,index)))
                 {
                     zkClient.createPersistent(dataPath.substring(0, index), "".getBytes());
                 }
                 index = dataPath.indexOf("/",index + 1);
-                zkClient.createPersistent(dataPath,data.getBytes());
+
             }
+             zkClient.createPersistent(dataPath,data.getBytes());
+//            countdown --;
+//            }
         }
 
         public void initZK()
         {
             try{
+                System.out.println(dataPath);
                 if(getZkClient().exists(dataPath))
                 {
                     Date date = new Date();
@@ -90,7 +97,7 @@ public class ZookeeperOffsetHandler implements OffsetHandler{
         try
         {
             if(!zkClient.exists(offsetInfoPath))
-            {
+            {   System.out.println(offsetInfoPath);
                 long currentTimeStamp = System.currentTimeMillis()/1000;
                 createZknode(offsetInfoPath,currentTimeStamp+":0:0",zkClient);
             }

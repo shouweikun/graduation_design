@@ -85,13 +85,13 @@ public class RecourceManager {
     @Value("${es.encrypt.data.topic}")
     @Getter
     private String esEncryptDataTopic;
-    @Value("${kafka.conf}")
+    @Value("${oplog.offline.kafka.topic}")
     @Getter
     private String oplog2OffLineTopic;
     @Value("${offline.need.oplog.flag}")
     @Getter
     private boolean needSendOplog2Offline;
-    @Value("${es.encrypt.data.topic}")
+    @Value("${kafka.conf}")
     @Getter
     private String kafkaConf;
 

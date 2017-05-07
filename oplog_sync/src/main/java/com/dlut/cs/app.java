@@ -18,7 +18,7 @@ import java.util.concurrent.BlockingQueue;
 public class app {
     private static final Logger logger = LoggerFactory.getLogger(app.class);
     public static void main(String[] args) {
-        String[] locations = {"/Users/john_liu/graduation_design/oplog_sync/src/main/java/com/dlut/cs/utils/spring_config.xml"};
+        String[] locations = {"META-INF/spring_config.xml"};
         ApplicationContext context = new ClassPathXmlApplicationContext(locations);
         OplogScannerServer      server     = context.getBean(OplogScannerServer.class);
         Scanner                 scanner    = context.getBean(Scanner.class);

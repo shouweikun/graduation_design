@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import javax.annotation.PostConstruct;
@@ -76,14 +77,17 @@ public class Scanner implements Runnable {
 
     @PostConstruct
     public void init() {
-        thread = new Thread(this);
+        thread      = new Thread(this);
         thread.setName("Scanner Thread-" + new Random().nextInt());// set thread
         //name
-        ignoreList = collectProperty(recourceManager.getOplogconcernDbTableSkipList());
+        ignoreList  = collectProperty(recourceManager.getOplogconcernDbTableSkipList());
         concernList = collectProperty(recourceManager.getOplogConcernDbTableList());
+        producer    = producer != null ? producer :new KafkaProducer(recourceManager.getKafkaConf(), true);
     }
 
     public void start() {
+
+        executor = Executors.newFixedThreadPool(5);
         thread.start();
     }
 
@@ -108,27 +112,29 @@ public class Scanner implements Runnable {
     }
 
     public void run() {
-        //get oplog.rs
-        DBCollection oplogRs = recourceManager.mongo().getCollection(recourceManager.getMongoServerCollection());
+        //get oplog$main
+        DBCollection oplogMain = recourceManager.mongo().getCollection(recourceManager.getMongoServerCollection());
         //第一次启动时，按当前时间开始读取
         long currentTimeStamp = System.currentTimeMillis() / 1000;
 
         ZookeeperOffsetHandler zookeeper = recourceManager.offsetHandler();
         OffsetResponse offset = zookeeper.getOffset();
         if (!offset.isSuccess()) {
+            //链式
             offset = new OffsetResponse().setTimestamp(0).setIncrement(0);
             zookeeper.saveStartingPosition(currentTimeStamp);
         }
 
-        while (running.get() && oplogRs != null) {
+        while (running.get() && oplogMain != null) {
             try {
 
                 offset = zookeeper.getOffset();
+
                 long timeStamp = (int) offset.getTimestamp();
                 BSONTimestamp ts = new BSONTimestamp((int) timeStamp, offset.getIncrement());
                 final BasicDBObject query = new BasicDBObject();
                 query.append("ts", new BasicDBObject(QueryOperators.GT, ts));
-                DBCursor cursor = oplogRs.find(query).sort(new BasicDBObject("natural", 1));
+                DBCursor cursor = oplogMain.find(query).sort(new BasicDBObject("natural", 1));
                 cursor = cursor.addOption(Bytes.QUERYOPTION_OPLOGREPLAY);
                 try {
                     long result[] = doScan(cursor, offset);

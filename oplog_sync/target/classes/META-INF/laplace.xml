@@ -5,7 +5,9 @@
         provider-name="john_Liu">
 
     <store pk="_id">
-
+        <cf name="basic_info" target="graud_info"          cifid="_id,name,id_no">
+            <column hbaseCfName="basic_info" jsonName="basicinfo" nonesting="true"/>
+        </cf>
         <cf name="basic_info" target="DCCustomerBasicInfo" cifid="applyNo,idCardNum,batchNo,_id,ct,originalApplyNo">
             <column hbaseCfName="customer_basic" jsonName="DCCustomerBasicInfo" nonesting="true"/>
         </cf>

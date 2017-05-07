@@ -33,7 +33,7 @@ public class ClientTrans {
         try {
             rawObj                      = JSON.parseObject(rawJson);
         } catch (JSONException e) {
-            throw new CifException("transJson parse json errpor",e);
+            throw new CifException("transJson parse json error",e);
         }
         String      ns                  = rawObj.getString("ns");
         String      ts                  = rawObj.getString("ts");

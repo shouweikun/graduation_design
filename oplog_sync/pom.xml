@@ -122,6 +122,11 @@
             <version>4.2.7.RELEASE</version>
         </dependency>
         <dependency>
+            <groupId>org.apache.hbase</groupId>
+            <artifactId>hbase-client</artifactId>
+            <version>1.2.2</version>
+        </dependency>
+        <dependency>
             <groupId>com.puhui</groupId>
             <artifactId>puhui-aes</artifactId>
             <version>1.1</version>
