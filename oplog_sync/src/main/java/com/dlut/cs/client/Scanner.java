@@ -179,6 +179,7 @@ public class Scanner implements Runnable {
             BSONTimestamp o = (BSONTimestamp) obj.get("ts");
             final Object timeObject = o.getTime();
             final long ts = 1000 * Long.parseLong(timeObject.toString().trim());
+            System.out.println(isConcerned(obj));
             if (isConcerned(obj)) {
                 executor.execute(new Runnable() {
                     public void run() {
@@ -248,7 +249,9 @@ public class Scanner implements Runnable {
         try {
             CifTransHead transJson = clientTrans.transBean(Json, ts);
             if (transJson != null && StringUtils.isNotBlank(transJson.getJsonBody()) && "null".equalsIgnoreCase(transJson.getJsonBody())) {
+                if(recourceManager.isNeedWrite2EsHbase()){
                 queue.put(transJson);
+                }
                 String kfkMessage = String.format("%s@%s@%s\t%s", transJson.getDbName(), transJson.getTableName(), format.format(new Date()), transJson.getJsonBody());
                 try {
                     if (recourceManager.isNeedSendOplog2Offline())

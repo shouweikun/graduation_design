@@ -94,6 +94,9 @@ public class RecourceManager {
     @Value("${kafka.conf}")
     @Getter
     private String kafkaConf;
+    @Value("${need.write.2.es.hbase:true}")
+    @Getter
+    boolean needWrite2EsHbase;
 
     public RecourceManager() {}
 
