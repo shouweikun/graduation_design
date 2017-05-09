@@ -6,7 +6,5 @@ package com.dlut.cs.client;
 public class Constants {
     private Constants(){}
     public static  final String OPLOG_NS_PATTERN = "[\\w^0-9]+[\\w]+\\.[\\w^0-9]+[\\w]";
-
-    public static final com.puhui.nbsp.cif.CifDataParseFactory a = null;
     public static final String OPLOG_OP_PATTERN = "[iud]{1}";
 }

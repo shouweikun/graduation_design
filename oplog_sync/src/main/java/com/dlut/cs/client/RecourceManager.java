@@ -40,6 +40,9 @@ public class RecourceManager {
     @Value("${mongo.server.collection}")
     @Getter
     String mongoServerCollection;
+    @Value("${mongo.server.datacollection}")
+    @Getter
+    String mongoServerDataCollection;
     @Value("${zk.address}")
     @Getter
     private String zkAddress;
@@ -101,6 +104,7 @@ public class RecourceManager {
     public RecourceManager() {}
 
         private DB localDatabase;
+        private DB adminDatabase;
 
         private MongoDbcollection mdc;
 
@@ -112,6 +116,10 @@ public class RecourceManager {
             {
              return (localDatabase == null) ?  new MongoDbcollection(mongoUserName, mongoPassword, mongoDatabase, mongoAddressList).use("local") :localDatabase;
             }
+    public DB Admin_mongo()
+    {
+        return (adminDatabase == null) ?  new MongoDbcollection(mongoUserName, mongoPassword, mongoDatabase, mongoAddressList).use("admin") :adminDatabase;
+    }
         private ZookeeperOffsetHandler offset;
 
         public ZookeeperOffsetHandler offsetHandler()

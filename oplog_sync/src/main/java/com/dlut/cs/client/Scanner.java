@@ -181,7 +181,11 @@ public class Scanner implements Runnable {
             final long ts = 1000 * Long.parseLong(timeObject.toString().trim());
             System.out.println(isConcerned(obj));
             if (isConcerned(obj)) {
+                if(executor==null) {
+                    executor = Executors.newFixedThreadPool(5);
+                }
                 executor.execute(new Runnable() {
+
                     public void run() {
                         processMessage(obj, timeObject, ts);
                     }
@@ -214,7 +218,7 @@ public class Scanner implements Runnable {
     private boolean isConcerned(DBObject obj) {
         Object opObj = obj.get("op");
         Object nsObj = obj.get("ns");
-        if (nsObj == null || !nsObj.toString().matches(Constants.OPLOG_NS_PATTERN) || nsObj.toString().indexOf(".") < 0) {
+        if (nsObj == null  || nsObj.toString().indexOf(".") < 0) {
             return false;
         } else if (!inConcernedList(nsObj.toString()) || inIgnoreList(nsObj.toString())) {
             return false;
@@ -228,7 +232,7 @@ public class Scanner implements Runnable {
 
     private boolean inConcernedList(String ns) {
         String database = ns.split("[.]")[0];
-        if (!concernList.isEmpty() && !concernList.contains(database) && concernList.contains(ns)) {
+        if (concernList.isEmpty()  && !concernList.contains(ns.toString())) {
             return false;
 
         }
@@ -244,11 +248,12 @@ public class Scanner implements Runnable {
     }
 
     public String processMessage(DBObject obj,Object timeObject,long ts) throws CifException {
+        System.out.println("processing message");
         String Json = JSONObject.toJSONString(obj, SerializerFeature.WriteMapNullValue);
         String channel = "";
         try {
             CifTransHead transJson = clientTrans.transBean(Json, ts);
-            if (transJson != null && StringUtils.isNotBlank(transJson.getJsonBody()) && "null".equalsIgnoreCase(transJson.getJsonBody())) {
+            if (transJson != null && StringUtils.isNotBlank(transJson.getJsonBody()) &&! "null".equalsIgnoreCase(transJson.getJsonBody())) {
                 if(recourceManager.isNeedWrite2EsHbase()){
                 queue.put(transJson);
                 }
