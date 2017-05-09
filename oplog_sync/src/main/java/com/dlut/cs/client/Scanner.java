@@ -260,7 +260,7 @@ public class Scanner implements Runnable {
                 String kfkMessage = String.format("%s@%s@%s\t%s", transJson.getDbName(), transJson.getTableName(), format.format(new Date()), transJson.getJsonBody());
                 try {
                     if (recourceManager.isNeedSendOplog2Offline())
-                        producer.sendKfkMessage(recourceManager.getOplog2OffLineTopic() + renameDBName(transJson.getDbName()),
+                        producer.sendKfkMessage(recourceManager.getOplog2OffLineTopic() ,
                                 "" + System.currentTimeMillis(), kfkMessage);
                 } catch (Exception e) {
                     logger.error(e.getClass().getName(), e);

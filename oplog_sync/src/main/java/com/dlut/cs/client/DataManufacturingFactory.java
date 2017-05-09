@@ -68,7 +68,7 @@ public class DataManufacturingFactory implements Runnable{
          return  RandomString(numbers,length);
     }
     private String RandomGender(){
-        return  RandomString(gender,2);
+        return  RandomString(gender,1);
     }
     private String RandomPhone(int length){
         return RandomString(numbers,length);
