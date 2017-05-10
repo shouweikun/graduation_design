@@ -10,6 +10,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>oplog_sync</module>
+        <module>flink_caculation</module>
     </modules>
 
 

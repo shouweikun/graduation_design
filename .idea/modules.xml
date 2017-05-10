@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$USER_HOME$/Finupprojects/CIF/cif-trans-interface/cif-utils/cif.utils.iml" filepath="$USER_HOME$/Finupprojects/CIF/cif-trans-interface/cif-utils/cif.utils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/flink_caculation/flink_caculation.iml" filepath="$PROJECT_DIR$/flink_caculation/flink_caculation.iml" />
       <module fileurl="file://$PROJECT_DIR$/graduation_design.iml" filepath="$PROJECT_DIR$/graduation_design.iml" />
       <module fileurl="file://$PROJECT_DIR$/oplog_sync/oplog_sync.iml" filepath="$PROJECT_DIR$/oplog_sync/oplog_sync.iml" />
     </modules>
