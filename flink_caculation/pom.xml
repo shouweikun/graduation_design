@@ -22,8 +22,8 @@
         <avro.version>1.7.7</avro.version>
         <junit.version>3.8.1</junit.version>
         <scalatest.version>2.2.0</scalatest.version>
-        <elasticsearch.spark.version>2.4.3</elasticsearch.spark.version>
-        <es.version>2.4.3</es.version>
+        <elasticsearch.spark.version>1.7.3</elasticsearch.spark.version>
+        <es.version>1.7.3</es.version>
         <jol.version>0.6</jol.version>
         <mysql.version>5.1.40</mysql.version>
         <maven.compiler.plugin.version>3.1</maven.compiler.plugin.version>
