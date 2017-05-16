@@ -25,10 +25,12 @@ public class DataManufacturingFactory implements Runnable{
     private RecourceManager recourceManager;
     private String          letters         =  "abcdefghijklmnopqrstuvwxyz";
     private String          numbers         =  "0123456789";
+    private String          numberswithout0 =  "123456789";
     private String          gender          =  "FM";
     private int             NameLength      =  3;
     private int             IdLength        =  12;
     private int             PhoneLength     =  11;
+    private int             Agelength       =  2;
     @Setter
     @Getter
     private boolean         running         =  true;
@@ -50,6 +52,7 @@ public class DataManufacturingFactory implements Runnable{
             doc.put("ID",RandomId(IdLength));
             doc.put("Gender",RandomGender());
             doc.put("Phone",RandomPhone(PhoneLength));
+            doc.put("Phone",RandomAge(Agelength));
             System.out.println(datatable.insert(doc));
 
             try {
@@ -73,6 +76,7 @@ public class DataManufacturingFactory implements Runnable{
     private String RandomPhone(int length){
         return RandomString(numbers,length);
     }
+    private String RandomAge(int length) {return RandomString(numberswithout0,length);}
      private String RandomString(String dic,int length){
          Random random = new Random();
          StringBuffer sb = new StringBuffer();

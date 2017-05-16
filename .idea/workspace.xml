@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1bd1f5b4-5c45-476d-b911-7ac5ffa77a66" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/flink_caculation/src/main/scala/datastream/Agecount.scala" afterPath="$PROJECT_DIR$/flink_caculation/src/main/scala/datastream/AgeCount.scala" />
       <change type="MODIFICATION" beforePath="$USER_HOME$/Finupprojects/CIF/cif-trans-interface/cif-utils/src/main/java/com/puhui/nbsp/cif/commons/FinUpKafkaProducer.java" afterPath="$USER_HOME$/Finupprojects/CIF/cif-trans-interface/cif-utils/src/main/java/com/puhui/nbsp/cif/commons/FinUpKafkaProducer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flink_caculation/src/main/scala/datastream/WindowWorldCount.scala" afterPath="$PROJECT_DIR$/flink_caculation/src/main/scala/datastream/WindowWorldCount.scala" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/oplog_sync/src/main/java/com/dlut/cs/client/Constants.java" afterPath="$PROJECT_DIR$/oplog_sync/src/main/java/com/dlut/cs/client/Constants.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/oplog_sync/src/main/java/com/dlut/cs/client/DataManufacturingFactory.java" afterPath="$PROJECT_DIR$/oplog_sync/src/main/java/com/dlut/cs/client/DataManufacturingFactory.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -38,16 +37,6 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="kafka.conf" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/oplog_sync/src/main/resources/META-INF/kafka.conf">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="5" column="35" lean-forward="false" selection-start-line="5" selection-start-column="35" selection-end-line="5" selection-end-column="35" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/flink_caculation/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
@@ -61,8 +50,8 @@
       <file leaf-file-name="WindowWorldCount.scala" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/flink_caculation/src/main/scala/datastream/WindowWorldCount.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="58" column="3" lean-forward="false" selection-start-line="20" selection-start-column="1" selection-end-line="58" selection-end-column="3" />
+            <state relative-caret-position="-13">
+              <caret line="35" column="120" lean-forward="false" selection-start-line="35" selection-start-column="120" selection-end-line="35" selection-end-column="120" />
               <folding>
                 <element signature="e#20#50#0" expanded="true" />
               </folding>
@@ -70,11 +59,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AgeCount.scala" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DataManufacturingFactory.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/oplog_sync/src/main/java/com/dlut/cs/client/DataManufacturingFactory.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="395">
+              <caret line="32" column="49" lean-forward="false" selection-start-line="32" selection-start-column="49" selection-end-line="32" selection-end-column="49" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Constants.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/oplog_sync/src/main/java/com/dlut/cs/client/Constants.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="288">
+              <caret line="11" column="1" lean-forward="true" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AgeCount.scala" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/flink_caculation/src/main/scala/datastream/AgeCount.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="203">
-              <caret line="60" column="108" lean-forward="false" selection-start-line="60" selection-start-column="108" selection-end-line="60" selection-end-column="108" />
+            <state relative-caret-position="539">
+              <caret line="64" column="32" lean-forward="false" selection-start-line="50" selection-start-column="4" selection-end-line="64" selection-end-column="32" />
               <folding>
                 <element signature="e#20#50#0" expanded="true" />
               </folding>
@@ -202,11 +211,9 @@
         <option value="$PROJECT_DIR$/oplog_sync/src/test/java/utils/ZookeeperOffsetHandlerTest.java" />
         <option value="$PROJECT_DIR$/oplog_sync/src/main/java/com/dlut/cs/utils/ZookeeperOffsetHandler.java" />
         <option value="$PROJECT_DIR$/oplog_sync/pom.xml" />
-        <option value="$PROJECT_DIR$/oplog_sync/src/main/java/com/dlut/cs/client/Constants.java" />
         <option value="$PROJECT_DIR$/oplog_sync/src/main/java/com/dlut/cs/client/RecourceManager.java" />
         <option value="$PROJECT_DIR$/oplog_sync/src/main/java/com/dlut/cs/app.java" />
         <option value="$PROJECT_DIR$/oplog_sync/src/main/java/com/dlut/cs/client/OplogScannerServer.java" />
-        <option value="$PROJECT_DIR$/oplog_sync/src/main/java/com/dlut/cs/client/DataManufacturingFactory.java" />
         <option value="$PROJECT_DIR$/oplog_sync/src/main/resources/META-INF/app.properties" />
         <option value="$PROJECT_DIR$/oplog_sync/src/main/java/com/dlut/cs/client/Scanner.java" />
         <option value="$PROJECT_DIR$/oplog_sync/src/main/resources/META-INF/kafka.conf" />
@@ -216,8 +223,10 @@
         <option value="$PROJECT_DIR$/flink_caculation/src/main/scala/utils/KafkaSchema.scala" />
         <option value="$PROJECT_DIR$/flink_caculation/src/main/scala/dataset/WindowWorldCount.scala" />
         <option value="$PROJECT_DIR$/flink_caculation/src/main/scala/datastream/Agecount.scala" />
-        <option value="$PROJECT_DIR$/flink_caculation/src/main/scala/datastream/WindowWorldCount.scala" />
         <option value="$PROJECT_DIR$/flink_caculation/src/main/scala/datastream/AgeCount.scala" />
+        <option value="$PROJECT_DIR$/flink_caculation/src/main/scala/datastream/WindowWorldCount.scala" />
+        <option value="$PROJECT_DIR$/oplog_sync/src/main/java/com/dlut/cs/client/Constants.java" />
+        <option value="$PROJECT_DIR$/oplog_sync/src/main/java/com/dlut/cs/client/DataManufacturingFactory.java" />
       </list>
     </option>
   </component>
@@ -1548,7 +1557,7 @@
       <workItem from="1494291745120" duration="19216000" />
       <workItem from="1494339881399" duration="9392000" />
       <workItem from="1494654541245" duration="5314000" />
-      <workItem from="1494772734670" duration="7430000" />
+      <workItem from="1494772734670" duration="11117000" />
     </task>
     <task id="LOCAL-00001" summary="john Liu">
       <created>1491840938348</created>
@@ -1593,7 +1602,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="251665000" />
+    <option name="totallyTimeSpent" value="255352000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -1901,14 +1910,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/oplog_sync/src/main/java/com/dlut/cs/client/Constants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="7" column="88" lean-forward="false" selection-start-line="7" selection-start-column="88" selection-end-line="7" selection-end-column="88" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/mongodb/mongo-java-driver/3.2.2/mongo-java-driver-3.2.2-sources.jar!/com/mongodb/DB.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -1928,28 +1929,6 @@
         <state relative-caret-position="414">
           <caret line="93" column="0" lean-forward="false" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/oplog_sync/src/main/java/com/dlut/cs/client/DataManufacturingFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1244#1245#0" expanded="false" />
-            <element signature="e#1290#1291#0" expanded="false" />
-            <element signature="e#1316#1317#0" expanded="false" />
-            <element signature="e#1346#1347#0" expanded="false" />
-            <element signature="e#2067#2068#0" expanded="false" />
-            <element signature="e#2119#2120#0" expanded="false" />
-            <element signature="e#2160#2161#0" expanded="false" />
-            <element signature="e#2213#2214#0" expanded="false" />
-            <element signature="e#2248#2249#0" expanded="false" />
-            <element signature="e#2294#2295#0" expanded="false" />
-            <element signature="e#2338#2339#0" expanded="false" />
-            <element signature="e#2389#2390#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2143,16 +2122,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/flink_caculation/src/main/scala/datastream/WindowWorldCount.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="58" column="3" lean-forward="false" selection-start-line="20" selection-start-column="1" selection-end-line="58" selection-end-column="3" />
-          <folding>
-            <element signature="e#20#50#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/apache/flink/flink-connector-elasticsearch_2.11/1.2.0/flink-connector-elasticsearch_2.11-1.2.0.jar!/org/apache/flink/streaming/connectors/elasticsearch/ElasticsearchSink.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
@@ -2171,11 +2140,37 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/flink_caculation/src/main/scala/datastream/AgeCount.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="60" column="108" lean-forward="false" selection-start-line="60" selection-start-column="108" selection-end-line="60" selection-end-column="108" />
+        <state relative-caret-position="539">
+          <caret line="64" column="32" lean-forward="false" selection-start-line="50" selection-start-column="4" selection-end-line="64" selection-end-column="32" />
           <folding>
             <element signature="e#20#50#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flink_caculation/src/main/scala/datastream/WindowWorldCount.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-13">
+          <caret line="35" column="120" lean-forward="false" selection-start-line="35" selection-start-column="120" selection-end-line="35" selection-end-column="120" />
+          <folding>
+            <element signature="e#20#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/oplog_sync/src/main/java/com/dlut/cs/client/Constants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="11" column="1" lean-forward="true" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/oplog_sync/src/main/java/com/dlut/cs/client/DataManufacturingFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="395">
+          <caret line="32" column="49" lean-forward="false" selection-start-line="32" selection-start-column="49" selection-end-line="32" selection-end-column="49" />
+          <folding />
         </state>
       </provider>
     </entry>
