@@ -30,7 +30,8 @@ public class DataManufacturingFactory implements Runnable{
     private int             NameLength      =  3;
     private int             IdLength        =  12;
     private int             PhoneLength     =  11;
-    private int             Agelength       =  2;
+    private int             AgeLength       =  2;
+    private int             ScoreLength     =  2;
     @Setter
     @Getter
     private boolean         running         =  true;
@@ -48,12 +49,21 @@ public class DataManufacturingFactory implements Runnable{
         DBCollection datatable = recourceManager.Admin_mongo().getCollection(recourceManager.getMongoServerDataCollection());
         while(running) {
             BasicDBObject doc = new BasicDBObject();
+            //BasicDBObject doc_accounts_info = new BasicDBObject();
+            String        id  =     RandomId(IdLength);
             doc.put("name",RandomName(NameLength));
-            doc.put("ID",RandomId(IdLength));
+            doc.put("ID",id);
             doc.put("Gender",RandomGender());
             doc.put("Phone",RandomPhone(PhoneLength));
-            doc.put("Phone",RandomAge(Agelength));
+            doc.put("Age",RandomAge(AgeLength));
+            doc.put("Taobao",RandomScore(ScoreLength));
+            doc.put("Mobile",RandomScore(ScoreLength));
+            doc.put("CreditCard",RandomScore(ScoreLength));
+            doc.put("ThirdPartyCredit",RandomScore(ScoreLength));
+
             System.out.println(datatable.insert(doc));
+
+
 
             try {
                 Thread.sleep(500);
@@ -64,7 +74,7 @@ public class DataManufacturingFactory implements Runnable{
         }
 
     }
-     private String RandomName(int length){
+    private String RandomName(int length){
         return  RandomString(letters,length);
     }
     private String RandomId(int length){
@@ -77,6 +87,7 @@ public class DataManufacturingFactory implements Runnable{
         return RandomString(numbers,length);
     }
     private String RandomAge(int length) {return RandomString(numberswithout0,length);}
+    private String RandomScore(int length){return RandomString(numberswithout0,length);}
      private String RandomString(String dic,int length){
          Random random = new Random();
          StringBuffer sb = new StringBuffer();
