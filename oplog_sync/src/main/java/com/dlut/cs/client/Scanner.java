@@ -82,7 +82,7 @@ public class Scanner implements Runnable {
         //name
         ignoreList  = collectProperty(recourceManager.getOplogconcernDbTableSkipList());
         concernList = collectProperty(recourceManager.getOplogConcernDbTableList());
-        producer    = producer != null ? producer :new KafkaProducer(recourceManager.getKafkaConf(), true);
+        producer    = producer != null ? producer :new KafkaProducer(recourceManager.getKafkaConf(), false);
     }
 
     public void start() {

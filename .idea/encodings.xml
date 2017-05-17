@@ -3,5 +3,6 @@
   <component name="Encoding">
     <file url="file://$USER_HOME$/Finupprojects/CIF/cif-trans-interface/cif-utils" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/flink_caculation" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/oplog_sync/src/main/java/com/dlut/cs/client/Scanner.java" charset="UTF-8" />
   </component>
 </project>
