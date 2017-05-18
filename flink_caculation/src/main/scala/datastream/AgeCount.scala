@@ -1,27 +1,18 @@
 package datastream
 
-import java.io.FileInputStream
-import java.net.InetSocketAddress
 import java.util
 import java.util.Properties
-
 import org.apache.flink.streaming.api.scala._
 import org.apache.flink.api.common.functions.RuntimeContext
-import org.apache.flink.api.java.typeutils.TypeExtractor
-import org.apache.flink.streaming.api.functions.AssignerWithPeriodicWatermarks
 import org.apache.flink.streaming.api.{CheckpointingMode, TimeCharacteristic}
-import org.apache.flink.streaming.api.functions.sink.SinkFunction
 import org.apache.flink.streaming.api.scala.StreamExecutionEnvironment
 import org.apache.flink.streaming.api.windowing.time.Time
 import org.apache.flink.streaming.connectors.elasticsearch.{ElasticsearchSink, IndexRequestBuilder}
 import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer08
 import org.elasticsearch.action.index.IndexRequest
 import org.elasticsearch.client.Requests
-import org.elasticsearch.common.transport.{InetSocketTransportAddress, TransportAddress}
-import org.elasticsearch.transport.Transports
 import utils.KafkaStringSchema
-
-import scala.util.parsing.json.{JSON, JSONObject}
+import scala.util.parsing.json.JSON
 
 /**
   * Created by john_liu on 2017/5/15.
@@ -57,13 +48,8 @@ object WindowAgeCount {
       "grau_info",KafkaStringSchema, props)
     //生成数据流
     val datastream = env.addSource(kafkaConsumer)
-    //datastream.assignTimestampsAndWatermarks(new AssignerWithPeriodicWatermarks[(String))
-    //datastream.print()
     //mapreduce
     val  resultStream  = datastream.map{x =>val kk =AgeData(division(dataExtraction(x)("Age").asInstanceOf[String]),1);kk}.keyBy("age").timeWindow(Time.seconds(5)).sum("count")
-    resultStream.print()
-
-
 
     //ElasticSearch配置
     val config: java.util.Map[String,String] = new java.util.HashMap[String, String]
@@ -75,6 +61,7 @@ object WindowAgeCount {
         val json = new util.HashMap[String, AnyRef]
         json.put("age", element.age)
         json.put("count",element.count.toString)
+        json.put("timestamp",System.currentTimeMillis().toString)
         println("SENDING: " + element.toString)
         Requests.indexRequest.index("resultset").`type`("agecount").source(json)
       }
