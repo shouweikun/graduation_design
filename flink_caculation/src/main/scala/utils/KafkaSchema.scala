@@ -18,5 +18,4 @@ import org.apache.flink.streaming.util.serialization.{DeserializationSchema, Ser
     override def deserialize(bytes: Array[Byte]): String = new String(bytes, "UTF-8")
 
     override def getProducedType: TypeInformation[String] = TypeExtractor.getForClass(classOf[String])
-   def getProducedType1: TypeInformation[(String,Int)] = TypeExtractor.getForClass(classOf[(String,Int)])
 }
