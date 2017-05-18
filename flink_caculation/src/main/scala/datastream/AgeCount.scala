@@ -2,20 +2,23 @@ package datastream
 
 import java.io.FileInputStream
 import java.net.InetSocketAddress
+import java.util
 import java.util.Properties
-import org.apache.flink.streaming.api.scala._
 
+import org.apache.flink.streaming.api.scala._
 import org.apache.flink.api.common.functions.RuntimeContext
 import org.apache.flink.api.java.typeutils.TypeExtractor
+import org.apache.flink.streaming.api.functions.AssignerWithPeriodicWatermarks
 import org.apache.flink.streaming.api.{CheckpointingMode, TimeCharacteristic}
 import org.apache.flink.streaming.api.functions.sink.SinkFunction
 import org.apache.flink.streaming.api.scala.StreamExecutionEnvironment
 import org.apache.flink.streaming.api.windowing.time.Time
-import org.apache.flink.streaming.connectors.elasticsearch2.{ElasticsearchSink, ElasticsearchSinkFunction, RequestIndexer}
+import org.apache.flink.streaming.connectors.elasticsearch.{ElasticsearchSink, IndexRequestBuilder}
 import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer08
-import org.apache.flink.streaming.util.serialization.SimpleStringSchema
 import org.elasticsearch.action.index.IndexRequest
 import org.elasticsearch.client.Requests
+import org.elasticsearch.common.transport.{InetSocketTransportAddress, TransportAddress}
+import org.elasticsearch.transport.Transports
 import utils.KafkaStringSchema
 
 import scala.util.parsing.json.{JSON, JSONObject}
@@ -29,7 +32,9 @@ object WindowAgeCount {
   private val KAFKA_BROKER = "localhost:9092"
   private val KAFKA_GROUP = "result_set"
 
-  case class AgeData( age:String, count:Int)
+  case class AgeData( age:String, count:Int){
+    override def toString: String = s"$age:$count"
+  }
   def main(args: Array[String]): Unit = {
 
     //flink 环境
@@ -52,6 +57,7 @@ object WindowAgeCount {
       "grau_info",KafkaStringSchema, props)
     //生成数据流
     val datastream = env.addSource(kafkaConsumer)
+    //datastream.assignTimestampsAndWatermarks(new AssignerWithPeriodicWatermarks[(String))
     //datastream.print()
     //mapreduce
     val  resultStream  = datastream.map{x =>val kk =AgeData(division(dataExtraction(x)("Age").asInstanceOf[String]),1);kk}.keyBy("age").timeWindow(Time.seconds(5)).sum("count")
@@ -64,24 +70,17 @@ object WindowAgeCount {
     config.put("bulk.flush.max.actions", "1")
     config.put("cluster.name", "elasticsearch")
 
-    val transports = new java.util.ArrayList[InetSocketAddress]()
-    transports.add(new InetSocketAddress("localhost", 9300))
-
-    val elasticsearchSink = new ElasticsearchSinkFunction[AgeData]{
-      def createIndexRequest(element: AgeData): IndexRequest = {
-        val map = new java.util.HashMap[String, String]
-        map.put("age",element.age)
-        map.put("quan",element.count.toString)
-        map.put("timestamp")
-        Requests.indexRequest.index("grau").`type`("window_age_count_result").source(map)
+    val essink:ElasticsearchSink[AgeData] =new ElasticsearchSink(config, new IndexRequestBuilder[AgeData] {
+       def createIndexRequest(element:AgeData, ctx: RuntimeContext): IndexRequest = {
+        val json = new util.HashMap[String, AnyRef]
+        json.put("age", element.age)
+        json.put("count",element.count.toString)
+        println("SENDING: " + element.toString)
+        Requests.indexRequest.index("resultset").`type`("agecount").source(json)
       }
+    })
+    resultStream.addSink(essink)
 
-
-      override def process(element: AgeData, runtimeContext: RuntimeContext, requestIndexer: RequestIndexer): Unit = requestIndexer.add(createIndexRequest(element))
-    }
-    val essink  = new ElasticsearchSink(config,transports,elasticsearchSink) with SinkFunction[(AgeData]{}
-
-    resultStream.addSink()
     env.execute("Flink_AgeCount_ElasticSearch2")
   }
  def dataExtraction(source :String)(name:String) = {
