@@ -222,6 +222,7 @@ public class Scanner implements Runnable {
             return false;
         } else if (!inConcernedList(nsObj.toString()) || inIgnoreList(nsObj.toString())) {
             return false;
+
         }
         if (opObj == null || !opObj.toString().matches(Constants.OPLOG_OP_PATTERN)) {
             return false;

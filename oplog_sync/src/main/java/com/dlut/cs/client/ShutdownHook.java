@@ -31,7 +31,7 @@ public class ShutdownHook implements Runnable {
                 logger.info("waiting for scanner shutdown!!!!!");
                 Thread.sleep(500);
             } catch (Exception e) {
-                logger.error("", e);
+                logger.error("", e); 
             }
         }
         logger.info("scanner is terminated!!!");
