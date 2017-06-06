@@ -13,7 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 
 /**
  * Created by john_liu on 2017/5/9.
@@ -32,6 +34,7 @@ public class DataManufacturingFactory implements Runnable{
     private int             PhoneLength     =  11;
     private int             AgeLength       =  2;
     private int             ScoreLength     =  2;
+    private Set             idSet           =  new HashSet();
     @Setter
     @Getter
     private boolean         running         =  true;
@@ -51,19 +54,17 @@ public class DataManufacturingFactory implements Runnable{
             BasicDBObject doc = new BasicDBObject();
             //BasicDBObject doc_accounts_info = new BasicDBObject();
             String        id  =     RandomId(IdLength);
-            doc.put("name",RandomName(NameLength));
-            doc.put("ID",id);
-            doc.put("Gender",RandomGender());
-            doc.put("Phone",RandomPhone(PhoneLength));
-            doc.put("Age",RandomAge(AgeLength));
-            doc.put("Taobao",RandomScore(ScoreLength));
-            doc.put("Mobile",RandomScore(ScoreLength));
-            doc.put("CreditCard",RandomScore(ScoreLength));
-            doc.put("ThirdPartyCredit",RandomScore(ScoreLength));
+            if(idSet.add(id))
+            {
+                continue;
+            }
+            for(int i = 1 ;i <7;i++){
+
+                this.WriteIntoDatabase(doc,id,Integer.toString(i));
+
+            }
 
             System.out.println(datatable.insert(doc));
-
-
 
             try {
                 Thread.sleep(500);
@@ -97,4 +98,16 @@ public class DataManufacturingFactory implements Runnable{
          }
          return sb.toString();
      }
+    private void WriteIntoDatabase(BasicDBObject doc,String id,String InsertTime){
+        doc.put("name",RandomName(NameLength));
+        doc.put("ID",id);
+        doc.put("Gender",RandomGender());
+        doc.put("Phone",RandomPhone(PhoneLength));
+        doc.put("Age",RandomAge(AgeLength));
+        doc.put("Taobao",RandomScore(ScoreLength));
+        doc.put("Mobile",RandomScore(ScoreLength));
+        doc.put("CreditCard",RandomScore(ScoreLength));
+        doc.put("ThirdPartyCredit",RandomScore(ScoreLength));
+        doc.put("datatime",InsertTime);
+    }
 }
